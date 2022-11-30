@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model SequelizeMeta {
+  name String @id @db.VarChar(255)
+}
+
+model users {
+  id        Int    @id @default(autoincrement())
+  username  String @db.VarChar(255) @unique
+  email     String @db.VarChar(255) @unique
+  password  String @db.VarChar(255)
+  accountId Int
+
+  account accounts @relation(fields: [accountId], references: [id])
+}
+
+model transactions {
+  id                Int     @id @default(autoincrement())
+  debitedAccountId  Int
+  creditedAccountId Int
+  value             Float  @db.DoublePrecision
+  createdAt         DateTime @db.Timestamptz(6)
+
+  debitedAccount  accounts @relation("debitedAccount", fields: [debitedAccountId], references: [id])
+  creditedAccount accounts @relation("creditedAccount", fields: [creditedAccountId], references: [id])
+}
+
+model accounts {
+  id      Int @id @default(autoincrement())
+  balance Int @db.Integer
+
+  user users[]
+  debitedTransactions  transactions[] @relation("debitedAccount")
+  creditedTransactions transactions[] @relation("creditedAccount")
+}

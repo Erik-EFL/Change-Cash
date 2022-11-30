@@ -1,0 +1,20 @@
+{
+  "name": "ngchallenge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "compose:up": "(cd app && docker-compose up -d --build)",
+    "compose:down": "(cd app && docker-compose down --remove-orphans)",
+    "docker:stop": "docker container stop db_ng",
+    "docker:rm:container": "docker container rm db_ng",
+    "docker:rm:volume": "docker volume rm app_db",
+    "docker:rm:image": "docker image rmi app_frontend app_backend postgres",
+    "docker:rm": "compose:down && docker:stop && docker:rm:container && docker:rm:volume && docker:rm:image",
+    "logs": "cd app && docker-compose logs -f",
+    "install:front": "cd app && cd frontend && npm install",
+    "install:back": "cd app && cd backend && npm install",
+    "install:all": "npm run install:front && npm run install:back",
+    "prisma:migrate": "cd app && cd backend && npx prisma generate && npx prisma migrate dev --name init --preview-feature && npx prisma db push"
+  }
+}
