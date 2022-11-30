@@ -23,7 +23,7 @@ function Login() {
     event.preventDefault()
     await Request.login(registerData)
       .then((response) => {
-        localStorage.setItem('user', response.data.token)
+        localStorage.setItem('user', JSON.stringify(response.data.token))
         navigate('/home')
       }).catch((error) => {
         setError(error.response.data.message)
