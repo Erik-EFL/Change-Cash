@@ -6,7 +6,7 @@ function Header() {
   return (
     <Styled.Header>
       <Styled.Logo>
-        <h1>NG Challenge</h1>
+        <h1>Change Cash</h1>
       </Styled.Logo>
     </Styled.Header>
   )
