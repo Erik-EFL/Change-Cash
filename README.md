@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Preview](./NG_Chalenge.png)
+![Preview]()
 
 </div>
 
