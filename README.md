@@ -2,17 +2,20 @@
 
 <div align="center">
 
-![Preview](./NG_Chalenge.png)
+![Preview]()
 
 </div>
 
 ## 📓 Descrição
 
-  Este projeto foi feito com base no desafio pratico fornecido por uma empresa na qual participei do processo de celação, para que seja desenvolvida uma solução bancaria simple.
+
+ Este projeto foi feito para desenvolver meus aprendizados como full stack developer.
+
 
 <details>
   <summary>Sobre o desenvolvimento</summary>
   <br />
+
 
   Para o desenvolvimento do projeto, utilizei as informações disponibilizadas pela empresa para a construção da API, Banco de Dados e Front-end.
   Para a construção do banco de dados utilizei o banco [PostgreSQL](https://www.postgresql.org/) junto a ORM [Prisma](https://www.prisma.io/), para a API utilizei o [NodeJS](https://nodejs.org/en/) e para o Front-end utilizei o [ReactJS](https://reactjs.org/) junto ao [Typescript](https://www.typescriptlang.org/).
@@ -20,6 +23,7 @@
   Inicialmente fiz a modelagem do banco a partir dos schemas do prisma, em fiz a dockerização do banco de dados para que pudesse fazer a conexão entre ele e a API. E apos isso fiz o mesmo com o restante da aplicação para que possa ser facilmente executada por completo em qualquer ambiente.
 
   Minha maior dificuldade nesse processo foi a própria dockerização do projeto por completo, pois nunca havia feito isso antes, sempre partes avulsas, mas com a ajuda de alguns amigos em algumas duvidas pontuais e pesquisas na internet consegui contornar e resolver o problema.
+
 
   <br />
 </details>
