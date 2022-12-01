@@ -34,7 +34,7 @@ model transactions {
 
 model accounts {
   id      Int @id @default(autoincrement())
-  balance Int @db.Integer
+  balance Float @db.DoublePrecision
 
   user users[]
   debitedTransactions  transactions[] @relation("debitedAccount")
