@@ -1,4 +1,4 @@
-<h1 align="center"> 📦 NG Challenge 📦 </h1>
+<h1 align="center"> 📦 Bank APP 📦 </h1>
 
 <div align="center">
 
@@ -8,13 +8,13 @@
 
 ## 📓 Descrição
 
-  Este projeto foi feito com base no desafio pratico fornecido pela empresa [NG Cash](https://ng.cash/), para que seja desenvolvida uma solução bancaria simple.
+  Este projeto foi feito para desenvolver meus aprendizados como full stack developer.
 
 <details>
   <summary>Sobre o desenvolvimento</summary>
   <br />
 
-  Para o desenvolvimento do projeto, utilizei as informações disponibilizadas pela empresa [NG Cash](https://ng.cash/) para a construção da API, Banco de Dados e Front-end.
+  Para o desenvolvimento do projeto, utilizei as informações disponibilizadas por uma emprea para a construção da API, Banco de Dados e Front-end.
 
   <br />
 </details>
