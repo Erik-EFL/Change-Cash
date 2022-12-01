@@ -6,7 +6,8 @@ export const Container = styled.section`
   background: #202024;
   border-radius: 8px;
   padding: 20px;
-  height: 88%;
+  max-height: 88%;
+  overflow-y: auto;
   width: 97%;
 `;
 

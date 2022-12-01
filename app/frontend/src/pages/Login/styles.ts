@@ -60,6 +60,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background: url("./Fundo-Geométrico-Preto-De-Textura.svg");
 `;
 
 export const Input = styled(TextField)`

@@ -8,13 +8,22 @@
 
 ## 📓 Descrição
 
-  Este projeto foi feito para desenvolver meus aprendizados como full stack developer.
+
+ Este projeto foi feito para desenvolver meus aprendizados como full stack developer.
+
 
 <details>
   <summary>Sobre o desenvolvimento</summary>
   <br />
 
-  Para o desenvolvimento do projeto, utilizei as informações disponibilizadas por uma emprea para a construção da API, Banco de Dados e Front-end.
+
+  Para o desenvolvimento do projeto, utilizei as informações disponibilizadas pela empresa para a construção da API, Banco de Dados e Front-end.
+  Para a construção do banco de dados utilizei o banco [PostgreSQL](https://www.postgresql.org/) junto a ORM [Prisma](https://www.prisma.io/), para a API utilizei o [NodeJS](https://nodejs.org/en/) e para o Front-end utilizei o [ReactJS](https://reactjs.org/) junto ao [Typescript](https://www.typescriptlang.org/).
+
+  Inicialmente fiz a modelagem do banco a partir dos schemas do prisma, em fiz a dockerização do banco de dados para que pudesse fazer a conexão entre ele e a API. E apos isso fiz o mesmo com o restante da aplicação para que possa ser facilmente executada por completo em qualquer ambiente.
+
+  Minha maior dificuldade nesse processo foi a própria dockerização do projeto por completo, pois nunca havia feito isso antes, sempre partes avulsas, mas com a ajuda de alguns amigos em algumas duvidas pontuais e pesquisas na internet consegui contornar e resolver o problema.
+
 
   <br />
 </details>
@@ -57,7 +66,13 @@
 * JWT
 * Bcrypt
 * Md5
+* ESLint
+* Prettier
+* EditorConfig
 * Docker/ Docker Compose
+* Git/ GitHub
+* Insomnia
+* Shell Script
 
   <br />
 </details>
@@ -67,7 +82,7 @@
 ### 📚 Documentação 📚
 
   <details>
-    <summary> 🚀 Rodando o projeto</summary>
+    <summary> 🚀 Rodando o projeto sem Docker</summary>
     <br />
 
 * Dentro da pasta do projeto, execute o comando abaixo para instalar as dependências do projeto:
@@ -90,14 +105,14 @@
 * Ainda dentro da rais do projeto, execute os comando abaixo para iniciar o container do docker:
 
     ```sh
-      npm run docker:up
+      npm run docker:local
     ```
     ou
     ```sh
-      yarn run docker:up
+      yarn run docker:local
     ```
   * Para iniciar o container do docker(Essa operação pode levar alguns minutos)
-  * Apenas o container do banco de dados sera iniciado, os demais podem ser iniciados manualmente
+  * Apenas o container do banco de dados sera iniciado
 
 * Após a inicialização do container do banco de dados, execute o comando abaixo para executar as migrations do banco de dados:
 
@@ -109,7 +124,14 @@
       yarn run prisma:migrate
     ```
 
-* Para executar a aplicação va até a pasta do front-end e execute o comando abaixo:
+* Para executar a aplicação va até a pasta do front-end e execute os comando abaixo:
+
+    ```sh
+      cd app/frontend
+    ```
+
+    * Para entrar na pasta do front-end e depois execute:
+
 
     ```sh
       npm run dev
@@ -119,7 +141,11 @@
       yarn run dev
     ```
 
-  * E o mesmo para iniciar o back-end da aplicação
+  * E o mesmo para iniciar o back-end da aplicação, porem abra uma nova aba no terminal e execute os comando abaixo:
+
+    ```sh
+      cd app/backend
+    ```
 
     ```sh
       npm run dev
@@ -132,16 +158,46 @@
 * Após o uso para excluir o container do docker, execute o comando abaixo:
 
     ```sh
-      npm run docker:down
-      e
-      npm run docker:rm
+      npm run docker:rm:local
     ```
     ou
     ```sh
-      yarn run docker:down
-      e
-      yarn run docker:rm
+      yarn run docker:rm:local
     ```
+
+  </details>
+<br />
+
+  <details>
+    <summary> 🚀 Rodando o projeto dentro do Docker</summary>
+    <br />
+
+* Dentro da pasta do projeto, execute o comando abaixo para instalar as dependências do projeto:
+
+    Caso utilize o npm:
+
+    ```sh
+      npm run compose:up
+    ```
+
+    Caso utilize o yarn:
+
+    ```sh
+      yarn run compose:up
+    ```
+
+  * Para subir o container do docker e instalar as dependências necessárias para o funcionamento do front e back-end, essa operação pode levar alguns minutos.
+
+* Para excluir o container do docker, execute o comando abaixo:
+
+    ```sh
+      npm run compose:docker:rm
+    ```
+    ou
+    ```sh
+      yarn run compose:docker:rm
+    ```
+
 
   </details>
 <br />
@@ -166,6 +222,46 @@
 
 ##
 
+### 🚩 Implementações por vir 🚩
+
+<details>
+  <summary> 📌 Alterações futuras 📌</summary>
+  <br />
+
+* Implementação de testes unitários
+* Implementação de testes de integração
+* Implementação de testes de aceitação
+* Implementação de testes E2E
+* implementação de nova UI kit
+* Implementação de novas funcionalidades
+  * Implementação de um sistema de notificações
+  * Implementação de um sistema de comentários
+  * Implementação de um sistema de compartilhamento
+  * Implementação de um sistema de favoritos
+  * Implementação de um sistema de tags
+  * Implementação de um sistema de categorias
+  * Implementação de um sistema de pagamentos
+  * Implementação de um sistema de avaliações
+  * Implementação de um sistema de relatórios
+    * Implementação de um sistema de relatórios de usuários
+    * Implementação de um sistema de relatórios de gastos
+    * Implementação de um sistema de relatórios de receitas
+    * Implementação de um sistema de relatórios de pagamentos
+    * Implementação de um sistema de impressão de gastos totais
+    * Implementação de um sistema de impressão de receitas totais
+  * Implementação de um sistema de denúncias
+* Implementação de um sistema de autenticação com o Smart Token
+* Implementação de um sistema de autenticação com o Authentication Code
+* Implementação de um sistema de autenticação com o CPF
+
+
+
+  <br />
+</details>
+
+<br />
+<br />
+
 ## ⚙️ Status do Projeto 🛠️
 
   ```js
@@ -174,3 +270,7 @@
     }
   ```
 ##
+
+### ©️ Aviso de direitos autorais
+
+Desenvolvi este projeto para propósitos de aprendizagem, todo o código e documentação são de minha autoria e os direitos me pertencem exclusivamente. É permitido baixar ou clonar o repositório para fins de estudo. Contudo, não é permitido publicar cópias totais ou parciais. Este aviso não cobre bibliotecas e dependências, estas estão sujeitas a suas respectivas licenças.

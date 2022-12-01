@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useQuery } from 'react-query'
-import Request from '../../../services/api'
-import Helpers from '../../../services/Utils/Functions'
+import Request from '../../../../services/api'
 
 function useFetch() {
   const [newData, setData] = useState([])
@@ -14,19 +13,17 @@ function useFetch() {
   const [resError, setError] = useState()
 
   /* faz a requisição a api */
-  const { data, isLoading, error } = useQuery('users',
+  const { data, isLoading, error, isError } = useQuery('users',
   () => Request.getUserInfo(), {
     onSuccess: (data) => {
       setData(data.data.transactions)
     },
     onError: (error: any) => {
       setError(error.response.data.message)
-    },
-    refetchInterval: 2000,
-    refetchIntervalInBackground: true,
+    }
   })
 
-  /* faz o filtro por datas */
+   /* faz o filtro por datas */
   const filterTransactionsByDate = (dateForFilter: string, data: any) => {
     const transactionsByDate = data.filter((transaction: any) => {
       return transaction.createdAt.includes(dateForFilter)
@@ -38,15 +35,19 @@ function useFetch() {
   function orderTransaction(data: any, username: any) {
     if (filterTransactions.type === 'received') {
     const transactionsReceived = data.filter((transaction: any) => {
-      return transaction.creditedAccountId.includes(username)
+      return transaction.creditedAccountId === username
     })
+      console.log(transactionsReceived);
       setData(transactionsReceived)
     }
     if (filterTransactions.type === 'sent') {
       const transactionsSent = data.filter((transaction: any) => {
-        return transaction.debitedAccountId.includes(username)
+        return transaction.debitedAccountId === username
       })
       setData(transactionsSent)
+    }
+    if (filterTransactions.type === 'all') {
+      setData(data)
     }
   }
 
@@ -85,6 +86,7 @@ function useFetch() {
               value={filterTransactions.type}
               onChange={(event) => setFilterTransactions({ ...filterTransactions, type: event.target.value })}
             >
+              <option value={'all'}>Selecione</option>
               <option value={'received'}>Recebidas</option>
               <option value={'sent'}>Enviadas</option>
             </select>
@@ -96,21 +98,10 @@ function useFetch() {
     )
   }
 
-  function RenderAmount(data: any) {
-    const { account } = data;
-    return (
-      <>
-        <ul>
-          <li>
-            <p>{Helpers.formatAmount(account.balance)}</p>
-          </li>
-        </ul>
-      </>
-    )
-  }
 
-  return { Render: RenderFilter, RenderList: RenderAmount, newData, data, isLoading, error, filterTransactionsByDate, resError }
+  return { Render: RenderFilter, newData, data, isLoading, error, filterTransactionsByDate, resError, isError }
 }
+
 
 export default useFetch
 

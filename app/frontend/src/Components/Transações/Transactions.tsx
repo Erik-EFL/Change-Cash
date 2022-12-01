@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Helpers from '../../services/Utils/Functions'
 import * as Styled from './styles'
-import useFetch from './sub component/Filter'
+import useFetch from './subComponent/filters/Filter'
 
 function Transactions() {
   const [success, setSuccess] = useState('')
@@ -12,6 +12,8 @@ function Transactions() {
 
   const { transactions } = data?.data
 
+  const mapTransactions = !newData.length ? transactions : newData
+
   return (
     <Styled.Container>
       <Styled.filtersContainer>
@@ -19,7 +21,7 @@ function Transactions() {
       </Styled.filtersContainer>
       <Styled.cardContainer>
       {transactions &&
-        newData.map((transaction: any) => (
+        mapTransactions.map((transaction: any) => (
           <Styled.Card>
             <Styled.CardHeader>
               <h1>Transação</h1>

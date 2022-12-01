@@ -33,7 +33,7 @@ function Login() {
   return (
     <Container>
       <CardLogin>
-        <h1>NG Login</h1>
+        <h1>CCash Login</h1>
         <div className="input-login">
           <Input
             label="Nome"

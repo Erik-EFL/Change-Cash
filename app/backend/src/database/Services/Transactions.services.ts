@@ -69,11 +69,16 @@ export default class TransactionsServices {
       createdAt,
     } = data;
 
+
+    const valueWithVirgulaToDot = value.replace(',', '.');
+    const valueToNumber = Number(valueWithVirgulaToDot);
+    const newValueToDoblePrecision = Number(valueToNumber.toFixed(2));
+
     if (debitedAccountId === creditedAccountId) {
       CustomError.badRequest("You can't transfer to yourself");
     }
 
-    if (value <= 0) {
+    if (newValueToDoblePrecision <= 0) {
       CustomError.badRequest("Invalid value");
     }
 
@@ -87,13 +92,13 @@ export default class TransactionsServices {
 
     const { balance } = findDebitedAccountId;
 
-    if (balance < value) CustomError.badRequest('Insufficient funds');
+    if (balance < newValueToDoblePrecision) CustomError.badRequest('Insufficient funds');
 
     await prisma.transactions.create({
       data: {
         debitedAccountId: Number(debitedAccountId),
         creditedAccountId: Number(creditedAccountId),
-        value: Number(value),
+        value: Number(newValueToDoblePrecision),
         createdAt: new Date(createdAt),
       },
     });
@@ -103,7 +108,7 @@ export default class TransactionsServices {
         id: Number(debitedAccountId),
       },
       data: {
-        balance: Number(balance) - Number(value),
+        balance: Number(balance) - Number(newValueToDoblePrecision),
       },
     });
 
@@ -112,7 +117,7 @@ export default class TransactionsServices {
         id: Number(creditedAccountId),
       },
       data: {
-        balance: Number(findCreditedAccountId.balance) + Number(value),
+        balance: Number(findCreditedAccountId.balance) + Number(newValueToDoblePrecision),
       },
     });
   };
