@@ -2,6 +2,7 @@ import "express-async-errors";
 import express, { NextFunction, Request, Response } from 'express';
 import errorMiddleware from "./middlewares/Middleware.error";
 import route from "./routes/export.routes";
+import 'dotenv/config';
 
 class App {
   public app: express.Express;

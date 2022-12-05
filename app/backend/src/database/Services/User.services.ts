@@ -58,7 +58,6 @@ export default class UserService {
 
   static createUser = async (data: any): Promise<string> => {
     const { username, email, password } = data;
-
     Validation.registerBody(data);
 
     const findUser = await this.findUserByEmail(email);
