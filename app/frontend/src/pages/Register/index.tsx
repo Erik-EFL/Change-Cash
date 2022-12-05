@@ -13,7 +13,6 @@ function Register() {
     password: '',
   })
 
-
   const fieldsVerify = (data: IRegister) => {
     const { username, email, password } = data;
 
