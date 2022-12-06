@@ -1,6 +1,15 @@
-FROM node:16.14
+FROM node:18-alpine
+
 WORKDIR /app-backend
+
+COPY package*.json ./
+
+COPY src/prisma /app-backend/src/prisma
+
+RUN npm install
+
 COPY . .
-RUN ["npm", "i"]
-RUN ["npm", "run", "prisma:generate"]
-CMD ["npm", "run", "dev"]
+
+EXPOSE 3001
+
+CMD ["npm", "run", "prisma:generate"]

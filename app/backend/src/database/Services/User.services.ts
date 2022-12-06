@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { Md5 } from 'ts-md5';
-import { IUser, IUserObject } from '../../interfaces/IUser.interface';
+import { IUser } from '../../interfaces/IUser.interface';
 import CustomError from '../../middlewares/Custom.error';
 import JWTService from './Auth/Jwt.auth';
 import Validation from '../../middlewares/validations/Validations';
@@ -58,7 +58,6 @@ export default class UserService {
 
   static createUser = async (data: any): Promise<string> => {
     const { username, email, password } = data;
-
     Validation.registerBody(data);
 
     const findUser = await this.findUserByEmail(email);

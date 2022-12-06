@@ -174,6 +174,14 @@
 
 * Dentro da pasta do projeto, execute o comando abaixo para instalar as dependências do projeto:
 
+    ```sh
+      npm run prisma:migrate
+    ```
+
+    * Este comando iara executar as migrations do banco de dados e assim criar as tabelas necessárias para o funcionamento da aplicação.
+
+    * Ainda dentro da pasta do projeto, execute o comando abaixo para executar a orquestração dos containers do docker:
+
     Caso utilize o npm:
 
     ```sh
@@ -191,11 +199,11 @@
 * Para excluir o container do docker, execute o comando abaixo:
 
     ```sh
-      npm run compose:docker:rm
+      npm run docker:rm
     ```
     ou
     ```sh
-      yarn run compose:docker:rm
+      yarn run docker:rm
     ```
 
 

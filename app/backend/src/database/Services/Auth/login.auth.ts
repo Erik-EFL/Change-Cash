@@ -8,11 +8,11 @@ const prisma = new PrismaClient()
 
 export default class LoginService {
   static findByEmail = async (username: string) => {
-    const caseSensitiveConvert = (name: string) => {
+    const caseSensitiveConvert = (name: string): string => {
       return name.toLowerCase();
     }
 
-    const newName = caseSensitiveConvert(username) as string;
+    const newName = caseSensitiveConvert(username);
 
     const user: any = await prisma.users.findUnique({
       where: {
@@ -20,15 +20,15 @@ export default class LoginService {
       },
     });
 
-    if (user === null) CustomError.badRequest('User not found');
+    if (user === null) CustomError.badRequest('Usuario não encontrado');
 
     return user;
   };
 
-  static login = async (username: string, password: string) => {
+  static login = async (username: string, password: string): Promise<string> => {
     const userLogin = await this.findByEmail(username);
 
-    if (!userLogin) CustomError.unauthorized('Incorrect user or password');
+    if (!userLogin) CustomError.unauthorized('Usuário ou senha incorretos');
 
     const hash = Md5.hashStr(password);
 
@@ -41,7 +41,7 @@ export default class LoginService {
   static validateLogin = async (token: string) => {
     const email = await JWTService.tokenVerify(token);
     const user = await this.findByEmail(email);
-    if (!user) CustomError.unauthorized('Incorrect user or password');
+    if (!user) CustomError.unauthorized('Usuário ou senha incorretos');
     return user;
   };
 }

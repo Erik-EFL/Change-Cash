@@ -6,7 +6,7 @@ import CustomError from '../../../middlewares/Custom.error';
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
 export default class JWTService {
-  static sign(data: IPayload) {
+  static sign(data: IPayload): string {
     const { id, username, email } = data;
     const newDataWithoutPassword = {
       id,

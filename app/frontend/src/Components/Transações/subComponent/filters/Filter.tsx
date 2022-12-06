@@ -34,11 +34,10 @@ function useFetch() {
   /* faz o filtro por transações */
   function orderTransaction(data: any, username: any) {
     if (filterTransactions.type === 'received') {
-    const transactionsReceived = data.filter((transaction: any) => {
+    const receivedTransactions = data.filter((transaction: any) => {
       return transaction.creditedAccountId === username
     })
-      console.log(transactionsReceived);
-      setData(transactionsReceived)
+      setData(receivedTransactions)
     }
     if (filterTransactions.type === 'sent') {
       const transactionsSent = data.filter((transaction: any) => {

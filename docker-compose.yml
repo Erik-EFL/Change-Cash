@@ -15,3 +15,5 @@ services:
       test: ["CMD", "pg_isready", "-U", "postgres"]
       timeout: 10s
       retries: 5
+    expose:
+      - 5432
