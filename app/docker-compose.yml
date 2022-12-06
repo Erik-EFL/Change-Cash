@@ -6,6 +6,8 @@ services:
     build: ./frontend
     ports:
       - "3000:3000"
+    expose:
+      - 3000
     working_dir: /app-frontend
     depends_on:
       - backend
@@ -24,6 +26,8 @@ services:
       postgres:
         condition: service_healthy
     working_dir: /app-backend
+    volumes:
+      - ./backend/src:/app-backend/src
     environment:
       - JWT_SECRET=My_super_secret_NG_2022
       - APP_PORT=3001
@@ -50,7 +54,6 @@ services:
     restart: 'always'
     environment:
       - POSTGRES_PORT=5432
-      - POSTGRES_HOST=localhost
       - POSTGRES_DB=db_ng
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres

@@ -17,5 +17,11 @@
     "install:back": "cd app && cd backend && npm install",
     "install:all": "npm run install:front && npm run install:back",
     "prisma:migrate": "cd app && cd backend && npx prisma generate && npx prisma migrate dev --name init --preview-feature && npx prisma db push"
+  },
+  "devDependencies": {
+    "prisma": "^4.7.1"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.7.1"
   }
 }
