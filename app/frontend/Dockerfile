@@ -12,4 +12,4 @@ ADD . .
 # Executar o entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
 # Executar o comando npm run dev
-CMD ["npm", "run", "dev"]
+CMD ["yarn", "run", "dev"]
