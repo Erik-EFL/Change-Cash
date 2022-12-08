@@ -9,7 +9,6 @@ export const CardLogin = styled.div`
   flex-direction: column;
   align-items: center;
 
-  border: 1px solid #ccc ;
   border-radius: 5px;
 
   max-width: 400px;
@@ -22,7 +21,7 @@ export const CardLogin = styled.div`
 
   h1 {
     font-size: 32px;
-    font-weight: 700;
+    font-weight: bold;
     margin-bottom: 60px;
     text-align: center;
   }
@@ -35,15 +34,19 @@ export const CardLogin = styled.div`
     width: 100%;
   }
 
-  button {
+  .button {
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 0.8rem;
     border-radius: 4px;
     border: none;
     width: 100%;
+    font-weight: bold;
     background: #0c0c0c;
     cursor: pointer;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.2rem;
   }
 
   a {
@@ -55,12 +58,12 @@ export const CardLogin = styled.div`
 export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  height: 100vh;
+  height: 80vh;
+  margin-right: 80px;
 
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: url("./Fundo-Geométrico-Preto-De-Textura.svg");
+  justify-content: right;
 `;
 
 export const Input = styled(TextField)`
