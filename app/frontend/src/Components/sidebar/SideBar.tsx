@@ -20,9 +20,9 @@ function SideBar() {
     <>
       <Styled.SideBar>
         <Styled.Capa />
-          <Styled.UserImage>
-            <img src={avatar} alt={`Imagem de ${avatar}`} />
-          </Styled.UserImage>
+        <Styled.UserImage>
+          <img src={avatar} alt={`Imagem de ${avatar}`} />
+        </Styled.UserImage>
         <Styled.UserInfo>
           <h1>{Helpers.formateIniciais(user.username)}</h1>
           <h1>{user.email}</h1>
