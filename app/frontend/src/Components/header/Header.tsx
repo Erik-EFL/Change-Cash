@@ -11,7 +11,7 @@ function Header() {
         <Link to="/"><h1>Change Cash</h1></Link>
       </Styled.Logo>
       <Styled.Nav>
-        <NavLink className='button' to='/login'
+        <NavLink className='button' to='/'
         >
           Login
         </NavLink>
