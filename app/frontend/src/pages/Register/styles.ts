@@ -9,22 +9,21 @@ export const CardRegister = styled.div`
   flex-direction: column;
   align-items: center;
 
-  border: 1px solid #ccc ;
   border-radius: 5px;
 
   max-width: 400px;
   width: 300px;
-  height: 450px;
+  height: 400px;
 
   padding: 20px;
 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
   h1 {
-    font-size: 30px;
-    font-weight: 700;
-    margin-top: 20px;
-    margin-bottom: 40px;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 60px;
+    text-align: center;
   }
 
   .input-login {
@@ -35,19 +34,24 @@ export const CardRegister = styled.div`
     width: 100%;
   }
 
-  button {
+  .button {
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 0.8rem;
     border-radius: 4px;
     border: none;
     width: 100%;
-    cursor: pointer;
+    font-weight: bold;
     background: #0c0c0c;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.2rem;
   }
 
-  button:disabled {
-    background: #0c0c0cbb;
+  .button:disabled {
+    color: #ccc;
+    background: #0c0c0ce3;
     cursor: not-allowed;
   }
 `;
@@ -55,18 +59,14 @@ export const CardRegister = styled.div`
 export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  height: 100vh;
+  height: 80vh;
+  margin-right: 80px;
 
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  a {
-    color: rgb(11, 28, 255);
-    text-decoration: none;
-  }
+  justify-content: right;
 `;
 
-export const Input = styled(TextField)`
+export const InputRegister = styled(TextField)`
   width: 100%;
 `;

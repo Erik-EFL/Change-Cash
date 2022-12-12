@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const SideBar = styled.aside`
   width: 300px;
-  height: 90%;
+  height: 100%;
   border-radius: 8px;
   background-color: #202024;
   position: relative;
@@ -20,16 +20,6 @@ export const SideBar = styled.aside`
     margin-top: 0px;
   }
 
-  .transfer {
-    width: 100%;
-    margin-top: 8px;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: transparent;
-    border: 1px solid #fff;
-    cursor: pointer;
-  }
-
   .logout {
     position: absolute;
     bottom: 10px;
@@ -38,9 +28,20 @@ export const SideBar = styled.aside`
     width: 90%;
     padding: 10px;
     border-radius: 8px;
+    border: 1px solid #00B37E;
     background-color: transparent;
-    border: 1px solid #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #00B37E;
     cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: #00B37E;
+      color: #202024;
+      transition: 0.3s;
+    }
   }
 
 

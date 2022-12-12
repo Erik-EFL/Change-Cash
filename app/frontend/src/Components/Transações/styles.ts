@@ -6,9 +6,17 @@ export const Container = styled.section`
   background: #202024;
   border-radius: 8px;
   padding: 20px;
-  max-height: 88%;
+  max-height: 100%;
+  height: 100%;
   overflow-y: auto;
-  width: 97%;
+  width: 100%;
+
+  background: rgba( 255, 255, 255, 0.25 );
+  box-shadow: 0 8px 32px 0 rgba( 241, 254, 135, 0.1 );
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  border-radius: 10px;
+
 `;
 
 export const filtersContainer = styled.div`
@@ -100,41 +108,37 @@ export const Card = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  background: #202024;
-  border-radius: 8px;
+  background: linear-gradient( 135deg, #EAEAEA 10%, #B2D0CE 100% );
+  border-radius: 32px;
   padding: 5px;
-  border: 1px solid #fff;
   max-width: 300px;
-  width: 170px;
+  width: 180px;
   padding: 10px;
-  height: 180px;
+  height: 200px;
+  color: #272A32;
 
-  h1 {
-    color: #fff;
-    font-size: 20px;
+  h5 {
     font-weight: 500;
-    margin-bottom: 10px;
   }
 `;
 
 export const CardHeader = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  border-bottom: 1px solid #fff;
   margin-bottom: 5px;
+  margin-top: 10px;
 `;
 
 export const CardBody = styled.div`
   display: flex;
   flex-direction: column;
   margin: 8px 10px 8px 10px;
+  font-weight: 900;
 `;
 
 export const CardFooter = styled.div`
   position: absolute;
   bottom: 06px;
-  border-top: 1px solid #fff;
   justify-content: center;
   display: flex;
   flex-direction: row;

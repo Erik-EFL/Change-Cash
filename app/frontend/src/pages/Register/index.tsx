@@ -1,8 +1,11 @@
+import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { FormControl, IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import Header from '../../Components/header/Header'
 import { IRegister } from '../../interfaces/register.interface'
 import Request from '../../services/api'
-import { CardRegister, Container, Input } from './styles'
+import { CardRegister, Container, InputRegister } from './styles'
 
 function Register() {
   const navigate = useNavigate()
@@ -11,6 +14,7 @@ function Register() {
     username: '',
     email: '',
     password: '',
+    showPassword: false,
   })
 
   const fieldsVerify = (data: IRegister) => {
@@ -56,56 +60,83 @@ function Register() {
     fieldsVerify(registerData)
   }, [registerData])
 
-  return (
-    <Container>
-      <CardRegister>
-        <h1>Faça seu registro</h1>
-          <form className="input-login">
-            <Input
-              label="Nome"
-              variant="outlined"
-              type="text"
-              name="username"
-              id="username"
-              value={ registerData.username }
-              onChange={ (event) => setRegisterData(
-                { ...registerData, username: event.target.value },
-              ) }
-            />
-            <Input
-              label="Email"
-              variant="outlined"
-              type="email"
-              name="email"
-              id="email"
-              value={ registerData.email }
-              onChange={ (event) => setRegisterData(
-                { ...registerData, email: event.target.value },
-              ) }
-            />
-            <Input
-              label="Password"
-              variant="outlined"
-              type="password"
-              name="password"
-              id="password"
-              value={ registerData.password }
-              onChange={ (event) => setRegisterData(
-                { ...registerData, password: event.target.value },
-              ) }
-            />
-          </form>
-          <button
-            type="submit"
-            onClick={ handleSubmit }
-            disabled={ isBtnDisabled }
-          >
-            Confirmar
-          </button>
-          <Link to="/">Ja possuo uma conta</Link>
-      </CardRegister>
-    </Container>
+  const handleClickShowPassword = () => {
+    setRegisterData({
+      ...registerData,
+      showPassword: !registerData.showPassword,
+    });
+  };
 
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
+
+  const handleChange =
+  (prop: any) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRegisterData({ ...registerData, [prop]: event.target.value });
+  };
+
+  return (
+    <>
+      <Header />
+      <Container>
+        <CardRegister>
+          <h1>Registre-se</h1>
+            <form className="input-login">
+              <InputRegister
+                label="Nome"
+                variant="standard"
+                type="text"
+                name="username"
+                id="username"
+                value={ registerData.username }
+                onChange={ (event) => setRegisterData(
+                  { ...registerData, username: event.target.value },
+                ) }
+              />
+              <InputRegister
+                label="Email"
+                variant="standard"
+                type="email"
+                name="email"
+                id="email"
+                value={ registerData.email }
+                onChange={ (event) => setRegisterData(
+                  { ...registerData, email: event.target.value },
+                ) }
+              />
+              <FormControl sx={{ width: '24.5ch', marginLeft: '-1px' }} variant="standard">
+                <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+                <Input
+                  id="standard-adornment-password"
+                  type={registerData.showPassword ? 'text' : 'password'}
+                  value={registerData.password}
+                  onChange={handleChange('password')}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                          {registerData.showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+              </FormControl>
+            </form>
+            <button
+              className="button"
+              type="submit"
+              onClick={ handleSubmit }
+              disabled={ isBtnDisabled }
+            >
+              Confirmar
+            </button>
+        </CardRegister>
+      </Container>
+    </>
   )
 }
 
