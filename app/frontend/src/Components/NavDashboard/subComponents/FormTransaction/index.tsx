@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import Request from '../../../../services/api'
 import { CreateTransaction } from '../../../../types/types'
+import * as Styled from './styles'
 
 
 function FormTransaction() {
@@ -42,7 +43,7 @@ function FormTransaction() {
   }
 
   return (
-    <div>
+    <Styled.Form>
       <input
         type="number"
         name="trValue"
@@ -64,7 +65,7 @@ function FormTransaction() {
       >
         Transferir
       </button>
-    </div>
+    </Styled.Form>
   )
 }
 
