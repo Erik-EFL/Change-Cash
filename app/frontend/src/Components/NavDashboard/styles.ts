@@ -1,11 +1,10 @@
-import { Input } from './../../pages/Login/styles';
 import styled from 'styled-components';
 
 export const NavMenu = styled.header`
   color: #00B37E;
   display: flex;
   flex-direction: row;
-  width: 96%;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
 
@@ -17,7 +16,7 @@ export const NavMenu = styled.header`
   }
 
   .saldo {
-    margin-right: 20px;
+    margin-right: 5px;
   }
 
   button{
