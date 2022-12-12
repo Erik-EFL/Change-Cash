@@ -14,9 +14,9 @@
     "docker:rm": "docker container stop db_ng app_backend app_frontend && docker container rm db_ng app_backend app_frontend && docker image rmi app-frontend app-backend postgres",
     "docker:rm:local": "docker:stop && docker:rm:container ",
     "logs": "cd app && docker-compose logs -f",
-    "install:front": "cd app && cd frontend && yarn install",
-    "install:back": "cd app && cd backend && yarn install",
-    "install:all": "yarn run install:front && yarn run install:back",
+    "install:front": "cd app && cd frontend && yarn",
+    "install:back": "cd app && cd backend && yarn",
+    "install:all": "npm run install:front && yarn run install:back",
     "prisma:migrate": "cd app && cd backend && npx prisma generate && npx prisma migrate dev --name init --preview-feature && npx prisma db push"
   },
   "devDependencies": {
