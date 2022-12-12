@@ -49,7 +49,7 @@ function Register() {
     const data = await getData(registerData)
     if (data) {
       if (data.status === 201) {
-        navigate('/login')
+        navigate('/')
       } else if (data.status !== 201) {
         alert(data.statusText)
       }

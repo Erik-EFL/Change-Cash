@@ -1,5 +1,5 @@
 import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material'
-import { Alert, FilledInput, FormControl, IconButton, Input, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material'
+import { Alert, FormControl, IconButton, Input, InputAdornment, InputLabel, OutlinedInput } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import Header from '../../Components/header/Header'
@@ -61,6 +61,8 @@ function Login() {
             </InputLabel>
             <Input
               id="input-with-icon-adornment"
+              value={registerData.username}
+              onChange={handleChange('username')}
               startAdornment={
                 <InputAdornment position="start">
                   <AccountCircle />
