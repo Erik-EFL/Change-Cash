@@ -11,7 +11,7 @@ function Transactions() {
   if (isLoading) return <div>Loading...</div>
   if (error) return <span>An error has occurred</span>
 
-  const { transactions, username } = data?.data
+  const { transactions, user: { username } } = data?.data
 
   const mapTransactions = !newData.length ? transactions : newData
 
@@ -24,16 +24,16 @@ function Transactions() {
       {transactions &&
         mapTransactions.map((transaction: any) => (
           <Styled.Card>
-            <Styled.CardHeader>
-              <h3>Transação</h3>
-            </Styled.CardHeader>
             <Styled.CardBody>
-              <div><span><EuiAvatar name={username} /></span> <span>{Helpers.formateIniciais(transaction.debitedAccountId)}</span></div>
+              <div><span><EuiAvatar name={Helpers.formateIniciais(username)} /></span> <span>{Helpers.formateIniciais(transaction.debitedAccountId)}</span></div>
               <div><span><EuiAvatar name={Helpers.formateIniciais(transaction.creditedAccountId)} /></span> <span>{Helpers.formateIniciais(transaction.creditedAccountId)}</span></div>
-              <div><span>Valor:</span> <span>{Helpers.formatAmount(transaction.value)}</span></div>
+              <Styled.CardHeader>
+                <h5>Transação</h5>
+              </Styled.CardHeader>
+              <div><span>{Helpers.formatAmount(transaction.value)}</span></div>
             </Styled.CardBody>
             <Styled.CardFooter>
-              <div><span>Data:</span> <span>{Helpers.formatDate(transaction.createdAt)}</span></div>
+              <div><span>{Helpers.formatDate(transaction.createdAt)}</span></div>
             </Styled.CardFooter>
           </Styled.Card>
         )
