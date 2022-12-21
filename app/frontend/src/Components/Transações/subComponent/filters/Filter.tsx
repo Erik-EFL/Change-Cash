@@ -24,9 +24,8 @@ function useFetch() {
     const transactionsByDate = data.filter((transaction: any) => {
       return transaction.createdAt.includes(dateForFilter)
     })
-    return transactionsByDate
+    return transactionsByDate || data
   }
-
   /* faz o filtro por transações */
   function orderTransaction(data: any, username: any) {
     if (filterTransactions.type === 'received') {
