@@ -18,9 +18,8 @@ function useFetch() {
       setError(error.response.data.message)
     }
   })
-
    /* faz o filtro por datas */
-  const filterTransactionsByDate = (dateForFilter: string, data: any) => {
+   const filterTransactionsByDate = (dateForFilter: string, data: any) => {
     const transactionsByDate = data.filter((transaction: any) => {
       return transaction.createdAt.includes(dateForFilter)
     })
@@ -44,12 +43,8 @@ function useFetch() {
         setData(data);
         break;
     }
-    if (filterTransactions.type === 'sent') {
-      const transactionsSent = data.filter((transaction: any) => {
-        return transaction.debitedAccountId === username
-      })
-      setData(transactionsSent)
-    }
+  }
+  /* restaura o valor default de todos os inputs */
   function resetFilter() {
     const select = document.getElementById('type') as HTMLSelectElement;
     select.selectedIndex = 0;
@@ -103,7 +98,7 @@ function useFetch() {
             </select>
           </div>
           <button onClick={() => orderTransaction(data?.data.transactions, data?.data.user.username)}>Filtrar</button>
-          <button onClick={() => setData(data?.data.transactions)}>Limpar</button>
+          <button onClick={() => resetFilter() }>Limpar</button>
         </div>
       </>
     )
