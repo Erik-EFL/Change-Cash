@@ -28,11 +28,21 @@ function useFetch() {
   }
   /* faz o filtro por transações */
   function orderTransaction(data: any, username: any) {
-    if (filterTransactions.type === 'received') {
-    const receivedTransactions = data.filter((transaction: any) => {
-      return transaction.creditedAccountId === username
-    })
-      setData(receivedTransactions)
+    switch (filterTransactions.type) {
+      case 'received':
+        setData(data.filter((transaction: any) => transaction.creditedAccountId === username));
+        break;
+      case 'sent':
+        setData(data.filter((transaction: any) => transaction.debitedAccountId === username));
+        break;
+      case 'all':
+        setData(data);
+        break;
+      default:
+        const select = document.getElementById('type') as HTMLSelectElement;
+        select.selectedIndex = 0;
+        setData(data);
+        break;
     }
     if (filterTransactions.type === 'sent') {
       const transactionsSent = data.filter((transaction: any) => {
