@@ -1,11 +1,15 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Helpers from '../../services/Utils/Functions'
 import * as Styled from './styles'
 import useFetch from './subComponent/filters/Filter'
-import { EuiAvatar, EuiTitle, EuiSpacer } from '@elastic/eui';
+import { EuiAvatar } from '@elastic/eui';
 
-function Transactions() {
-  const [success, setSuccess] = useState('')
+interface CardColorProps {
+  colorCard?: string | undefined | boolean
+  valueColor?: string | undefined | boolean
+}
+
+const Transactions: React.FC<CardColorProps> = () => {
   const { Render, newData, data, isLoading, error } = useFetch()
 
   if (isLoading) return <div>Loading...</div>
@@ -23,17 +27,29 @@ function Transactions() {
       <Styled.cardContainer>
       {transactions &&
         mapTransactions.map((transaction: any) => (
-          <Styled.Card>
-            <Styled.CardBody>
-              <div><span><EuiAvatar name={Helpers.formateIniciais(username)} /></span> <span>{Helpers.formateIniciais(transaction.debitedAccountId)}</span></div>
-              <div><span><EuiAvatar name={Helpers.formateIniciais(transaction.creditedAccountId)} /></span> <span>{Helpers.formateIniciais(transaction.creditedAccountId)}</span></div>
+          <Styled.Card colorCard={transaction.debitedAccountId === username}>
+            <Styled.CardBody valueColor={transaction.creditedAccountId === username}>
+              <div>
+                <EuiAvatar name={Helpers.formateIniciais(transaction.debitedAccountId)} /><span>{Helpers.formateIniciais(transaction.debitedAccountId)}</span>
+              </div>
+              <div>
+                <EuiAvatar name={Helpers.formateIniciais(transaction.creditedAccountId)} /><span>{Helpers.formateIniciais(transaction.creditedAccountId)}</span>
+              </div>
               <Styled.CardHeader>
-                <h5>Transação</h5>
+                <h5>Transferência</h5>
               </Styled.CardHeader>
-              <div><span>{Helpers.formatAmount(transaction.value)}</span></div>
+              <div>
+                <span className='amount'>{
+                  transaction.creditedAccountId !== username
+                    ? `- ${Helpers.formatAmount(transaction.value)}`
+                    : `+ ${Helpers.formatAmount(transaction.value)}`
+                }</span>
+              </div>
             </Styled.CardBody>
             <Styled.CardFooter>
-              <div><span>{Helpers.formatDate(transaction.createdAt)}</span></div>
+              <div>
+                <span>{Helpers.formatDate(transaction.createdAt)}</span>
+              </div>
             </Styled.CardFooter>
           </Styled.Card>
         )

@@ -4,12 +4,8 @@ import Request from '../../../../services/api'
 
 function useFetch() {
   const [newData, setData] = useState([])
-  const [filterData, setFilterData] = useState({
-    date: '',
-  })
-  const [filterTransactions, setFilterTransactions] = useState({
-    type: '',
-  });
+  const [filterData, setFilterData] = useState({date: ''})
+  const [filterTransactions, setFilterTransactions] = useState({type: ''});
   const [resError, setError] = useState()
 
   /* faz a requisição a api */
@@ -22,32 +18,43 @@ function useFetch() {
       setError(error.response.data.message)
     }
   })
-
    /* faz o filtro por datas */
-  const filterTransactionsByDate = (dateForFilter: string, data: any) => {
+   const filterTransactionsByDate = (dateForFilter: string, data: any) => {
     const transactionsByDate = data.filter((transaction: any) => {
       return transaction.createdAt.includes(dateForFilter)
     })
-    return transactionsByDate
+    return transactionsByDate || data
   }
-
   /* faz o filtro por transações */
   function orderTransaction(data: any, username: any) {
-    if (filterTransactions.type === 'received') {
-    const receivedTransactions = data.filter((transaction: any) => {
-      return transaction.creditedAccountId === username
-    })
-      setData(receivedTransactions)
+    switch (filterTransactions.type) {
+      case 'received':
+        setData(data.filter((transaction: any) => transaction.creditedAccountId === username));
+        break;
+      case 'sent':
+        setData(data.filter((transaction: any) => transaction.debitedAccountId === username));
+        break;
+      case 'all':
+        setData(data);
+        break;
+      default:
+        const select = document.getElementById('type') as HTMLSelectElement;
+        select.selectedIndex = 0;
+        setData(data);
+        break;
     }
-    if (filterTransactions.type === 'sent') {
-      const transactionsSent = data.filter((transaction: any) => {
-        return transaction.debitedAccountId === username
-      })
-      setData(transactionsSent)
-    }
-    if (filterTransactions.type === 'all') {
-      setData(data)
-    }
+  }
+  /* restaura o valor default de todos os inputs */
+  function resetFilter() {
+    const select = document.getElementById('type') as HTMLSelectElement;
+    select.selectedIndex = 0;
+    const date = document.getElementById('datas') as HTMLInputElement;
+    date.value = '';
+    const month = document.getElementById('mesAno') as HTMLInputElement;
+    month.value = '';
+    setFilterData({ date: '' });
+    setFilterTransactions({ type: '' });
+    setData(data?.data.transactions);
   }
 
   function RenderFilter() {
@@ -91,7 +98,7 @@ function useFetch() {
             </select>
           </div>
           <button onClick={() => orderTransaction(data?.data.transactions, data?.data.user.username)}>Filtrar</button>
-          <button onClick={() => setData(data?.data.transactions)}>Limpar</button>
+          <button onClick={() => resetFilter() }>Limpar</button>
         </div>
       </>
     )

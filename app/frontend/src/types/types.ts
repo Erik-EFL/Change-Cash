@@ -1,5 +1,7 @@
+import { NonNegative } from 'type-fest';
+
 export type CreateTransaction = {
-  nameDebit: string;
-  nameCredited: string;
-  value: string;
+  debitedAccountName: string;
+  creditedAccountName: string;
+  amount: NonNegative<number>;
 };

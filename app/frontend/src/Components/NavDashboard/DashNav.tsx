@@ -6,17 +6,8 @@ import FormTransaction from './subComponents/FormTransaction'
 import Amount from './subComponents/Amount'
 
 function DashNav() {
-
- const [newData, setNewData] = useState([])
-
-
   const { isLoading, error } = useQuery('account',
-  () => Request.getUserInfo(), {
-    onSuccess: (data) => {
-      setNewData(data.data.transactions)
-    }
-  })
-
+  () => Request.getUserInfo())
 
   if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error:</div>

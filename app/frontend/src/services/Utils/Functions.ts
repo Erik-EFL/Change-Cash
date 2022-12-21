@@ -1,44 +1,29 @@
-export default class Helpers {
-  static formateIniciais = (nome: string) => {
+export default class Helpers  {
+  static formateIniciais = (nome: string): string => {
     return nome.charAt(0).toUpperCase() + nome.slice(1)
   }
 
-  static formatDate(info: string) {
-    if (!info) return 'DD/MM/AA';
+  static formatDate(info: Date | string): string | undefined {
+    if (typeof info !== 'string' && !(info instanceof Date)) return 'DD/MM/AA';
     if (info) {
       const date = new Date(info);
-      const day = date.getDate();
-      const month = date.getMonth() + 1;
-      const year = date.getFullYear();
-      const dia = day < Number('10') ? `0${day}` : day;
-
-      const dateFormatted = `${dia}/${month}/${year}`;
-      return dateFormatted;
+      return new Intl.DateTimeFormat('pt-BR').format(date);
     }
   }
 
-  static formatAmount(price: number) {
+  static formatAmount(price: number): string {
     const num = Number(price);
-    const priceFormatted = num
-      ? num.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
-      : 'R$ 0,00';
-    return priceFormatted;
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(num);
   }
 
-  static convertNumbers(number: number) {
+  static convertNumbers(number: number): string | number | undefined {
     if (!number) return '0000';
-    if (number < Number('10')) {
-      return `000${number}`;
+
+    let numString = String(number);
+    while (numString.length < 4) {
+      numString = `0${numString}`;
     }
-    if (number >= Number('10')) {
-      return `00${number}`;
-    }
-    if (number >= Number('100')) {
-      return `0${number}`;
-    }
-    if (number >= Number('1000')) {
-      return number;
-    }
-    return !number && '0000';
+
+    return numString;
   }
 }

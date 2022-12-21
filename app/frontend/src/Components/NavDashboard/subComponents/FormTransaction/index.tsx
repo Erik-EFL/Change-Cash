@@ -8,9 +8,9 @@ import * as Styled from './styles'
 function FormTransaction() {
   const queryClient = useQueryClient()
   const [transaction, setTransaction] = useState<CreateTransaction>({
-    nameDebit: '',
-    nameCredited: '',
-    value: '',
+    debitedAccountName: '',
+    creditedAccountName: '',
+    amount: 0,
   })
   const [success, setSuccess] = useState('')
   const [resError, setResError] = useState('')
@@ -36,9 +36,9 @@ function FormTransaction() {
     event.preventDefault()
     addNewTransaction(transaction)
     setTransaction({
-      nameDebit: '',
-      nameCredited: '',
-      value: '',
+      debitedAccountName: '',
+      creditedAccountName: '',
+      amount: 0,
     })
   }
 
@@ -48,15 +48,15 @@ function FormTransaction() {
         type="number"
         name="trValue"
         id="trValue"
-        value={transaction.value}
-        onChange={(event) => setTransaction({ ...transaction, value: event.target.value })}
+        value={transaction.amount === 0 ? '' : transaction.amount}
+        onChange={(event) => setTransaction({ ...transaction, amount: Number(event.target.value) })}
         placeholder='Insira um valor' />
       <input
         type="text"
         name="trName"
         id="trName"
-        value={transaction.nameCredited}
-        onChange={(event) => setTransaction({ ...transaction, nameCredited: event.target.value, nameDebit: user.username })}
+        value={transaction.creditedAccountName}
+        onChange={(event) => setTransaction({ ...transaction, creditedAccountName: event.target.value, debitedAccountName: user.username })}
         placeholder='Para quem?' />
       <button
         className='transfer'

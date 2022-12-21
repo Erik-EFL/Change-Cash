@@ -34,7 +34,7 @@ export const CardLogin = styled.div`
     width: 100%;
   }
 
-  .button {
+  button[type='submit'] {
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 0.8rem;

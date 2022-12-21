@@ -1,7 +1,7 @@
 import { AccountCircle, Visibility, VisibilityOff } from '@mui/icons-material'
 import { Alert, FormControl, IconButton, Input, InputAdornment, InputLabel, OutlinedInput } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, useNavigation } from 'react-router-dom'
 import Header from '../../Components/header/Header'
 import Request from '../../services/api'
 import { CardLogin, Container } from './styles'
@@ -9,6 +9,7 @@ import { CardLogin, Container } from './styles'
 function Login() {
   const navigate = useNavigate()
   const location = useLocation()
+  const navigation = useNavigation()
   const [error, setError] = useState('');
   const [registerData, setRegisterData] = useState({
     username: '',
@@ -91,7 +92,7 @@ function Login() {
             />
           </FormControl>
           <button
-            className='button'
+            className={ navigation.state === "loading" ? "loading" : "" }
             type="submit"
             onClick={ handleSubmit }
           >
