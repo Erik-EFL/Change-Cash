@@ -50,9 +50,16 @@ function useFetch() {
       })
       setData(transactionsSent)
     }
-    if (filterTransactions.type === 'all') {
-      setData(data)
-    }
+  function resetFilter() {
+    const select = document.getElementById('type') as HTMLSelectElement;
+    select.selectedIndex = 0;
+    const date = document.getElementById('datas') as HTMLInputElement;
+    date.value = '';
+    const month = document.getElementById('mesAno') as HTMLInputElement;
+    month.value = '';
+    setFilterData({ date: '' });
+    setFilterTransactions({ type: '' });
+    setData(data?.data.transactions);
   }
 
   function RenderFilter() {
