@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+interface CardProps {
+  colorCard?: string | boolean | undefined;
+  valueColor?: string | boolean | undefined;
+}
+
 export const Container = styled.section`
   display: flex;
   flex-direction: column;
@@ -37,6 +42,12 @@ export const filtersContainer = styled.div`
     color: #fff;
     cursor: pointer;
     font-weight: bold;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background: #00b077E9;
+      transition: background-color 0.2s;
+    }
   }
 
   div {
@@ -103,8 +114,7 @@ export const cardContainer = styled.div`
   }
 `;
 
-
-export const Card = styled.div`
+export const Card = styled.div<CardProps>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -119,6 +129,8 @@ export const Card = styled.div`
 
   h5 {
     font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 900;
   }
 `;
 
@@ -129,11 +141,18 @@ export const CardHeader = styled.div`
   margin-top: 10px;
 `;
 
-export const CardBody = styled.div`
+export const CardBody = styled.div<CardProps>`
   display: flex;
   flex-direction: column;
   margin: 8px 10px 8px 10px;
   font-weight: 900;
+
+  .amount {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    color: ${props => props.valueColor ? '#00B37E' : '#FF0000'};
+  }
 `;
 
 export const CardFooter = styled.div`
