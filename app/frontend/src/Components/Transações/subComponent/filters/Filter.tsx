@@ -4,12 +4,8 @@ import Request from '../../../../services/api'
 
 function useFetch() {
   const [newData, setData] = useState([])
-  const [filterData, setFilterData] = useState({
-    date: '',
-  })
-  const [filterTransactions, setFilterTransactions] = useState({
-    type: '',
-  });
+  const [filterData, setFilterData] = useState({date: ''})
+  const [filterTransactions, setFilterTransactions] = useState({type: ''});
   const [resError, setError] = useState()
 
   /* faz a requisição a api */
