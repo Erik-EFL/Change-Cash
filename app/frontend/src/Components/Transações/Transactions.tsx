@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Helpers from '../../services/Utils/Functions'
 import * as Styled from './styles'
 import useFetch from './subComponent/filters/Filter'
-import { EuiAvatar, EuiTitle, EuiSpacer } from '@elastic/eui';
+import { EuiAvatar } from '@elastic/eui';
 
 function Transactions() {
   const [success, setSuccess] = useState('')
@@ -23,10 +23,14 @@ function Transactions() {
       <Styled.cardContainer>
       {transactions &&
         mapTransactions.map((transaction: any) => (
-          <Styled.Card>
-            <Styled.CardBody>
-              <div><span><EuiAvatar name={Helpers.formateIniciais(username)} /></span> <span>{Helpers.formateIniciais(transaction.debitedAccountId)}</span></div>
-              <div><span><EuiAvatar name={Helpers.formateIniciais(transaction.creditedAccountId)} /></span> <span>{Helpers.formateIniciais(transaction.creditedAccountId)}</span></div>
+          <Styled.Card colorCard={transaction.debitedAccountId === username}>
+            <Styled.CardBody valueColor={transaction.creditedAccountId === username}>
+              <div>
+                <EuiAvatar name={Helpers.formateIniciais(transaction.debitedAccountId)} /><span>{Helpers.formateIniciais(transaction.debitedAccountId)}</span>
+              </div>
+              <div>
+                <EuiAvatar name={Helpers.formateIniciais(transaction.creditedAccountId)} /><span>{Helpers.formateIniciais(transaction.creditedAccountId)}</span>
+              </div>
               <Styled.CardHeader>
                 <h5>Transferência</h5>
               </Styled.CardHeader>
