@@ -28,9 +28,15 @@ function Transactions() {
               <div><span><EuiAvatar name={Helpers.formateIniciais(username)} /></span> <span>{Helpers.formateIniciais(transaction.debitedAccountId)}</span></div>
               <div><span><EuiAvatar name={Helpers.formateIniciais(transaction.creditedAccountId)} /></span> <span>{Helpers.formateIniciais(transaction.creditedAccountId)}</span></div>
               <Styled.CardHeader>
-                <h5>Transação</h5>
+                <h5>Transferência</h5>
               </Styled.CardHeader>
-              <div><span>{Helpers.formatAmount(transaction.value)}</span></div>
+              <div>
+                <span className='amount'>{
+                  transaction.creditedAccountId !== username
+                    ? `- ${Helpers.formatAmount(transaction.value)}`
+                    : `+ ${Helpers.formatAmount(transaction.value)}`
+                }</span>
+              </div>
             </Styled.CardBody>
             <Styled.CardFooter>
               <div><span>{Helpers.formatDate(transaction.createdAt)}</span></div>
