@@ -8,26 +8,28 @@
 
 :root {
   font-family: Montserrat ,sans-serif;
+  font-style: normal;
   font-size: 16px;
+  text-decoration: none;
+  text-transform: none;
   line-height: 24px;
   font-weight: 400;
+  box-sizing: border-box;
 
   /* color-scheme: light dark; */
   background-color: rgb(12, 12, 12);
   color: aliceblue;
   background: url('../layered-steps-haikei.svg');
+  background-blend-mode: multiply;
   background-repeat: no-repeat space round;
   background-size: cover;
   background-position: center center fixed;
+  background-attachment: fixed;
+  background-clip: border-box;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-}
-
-a {
-  text-decoration: none;
-  color: rgb(11, 28, 255);
 }
