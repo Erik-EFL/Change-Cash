@@ -82,7 +82,7 @@
 ### 📚 Documentação 📚
 
   <details>
-    <summary> 🚀 Rodando o projeto sem Docker</summary>
+    <summary> 🚀 Rodando o projeto somente com DataBase Dockeriazada</summary>
     <br />
 
 * Dentro da pasta do projeto, execute o comando abaixo para instalar as dependências do projeto:
@@ -169,7 +169,7 @@
 <br />
 
   <details>
-    <summary> 🚀 Rodando o projeto dentro do Docker</summary>
+    <summary> 🚀 Rodando o projeto Com a Aplicação totalmente Dockerizada</summary>
     <br />
 
 * Dentro da pasta do projeto, execute o comando abaixo para instalar as dependências do projeto:
