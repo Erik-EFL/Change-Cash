@@ -17,11 +17,11 @@ export default class JWTService {
     return token;
   }
 
-  static tokenVerify = async (token: string) => {
+  static tokenVerify = async (token: string): Promise<string> => {
     const { newDataWithoutPassword } = jwt.verify(token, JWT_SECRET) as IPayload;
     const { email } = newDataWithoutPassword;
     if (!email) CustomError.badRequest('Token not found or expired');
-    return token;
+    return email;
   };
 
   static decode = async (token: string) => {
